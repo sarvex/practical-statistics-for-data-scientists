@@ -103,13 +103,14 @@ binnedPopulation.name = 'binnedPopulation'
 df = pd.concat([state, binnedPopulation], axis=1)
 df = df.sort_values(by='Population')
 
-groups = []
-for group, subset in df.groupby(by='binnedPopulation'):
-    groups.append({
+groups = [
+    {
         'BinRange': group,
         'Count': len(subset),
-        'States': ','.join(subset.Abbreviation)
-    })
+        'States': ','.join(subset.Abbreviation),
+    }
+    for group, subset in df.groupby(by='binnedPopulation')
+]
 print(pd.DataFrame(groups))
 
 # _Pandas_ also supports histograms for exploratory data analysis.
@@ -185,7 +186,7 @@ from matplotlib.colors import Normalize
 def plot_corr_ellipses(data, figsize=None, **kwargs):
     ''' https://stackoverflow.com/a/34558488 '''
     M = np.array(data)
-    if not M.ndim == 2:
+    if M.ndim != 2:
         raise ValueError('data must be a 2D array')
     fig, ax = plt.subplots(1, 1, figsize=figsize, subplot_kw={'aspect':'equal'})
     ax.set_xlim(-0.5, M.shape[1] - 0.5)

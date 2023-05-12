@@ -206,10 +206,10 @@ box.extend([0] * 2966)
 random.shuffle(box)
 
 def chi2(observed, expected):
-    pearson_residuals = []
-    for row, expect in zip(observed, expected):
-        pearson_residuals.append([(observe - expect) ** 2 / expect
-                                  for observe in row])
+    pearson_residuals = [
+        [(observe - expect) ** 2 / expect for observe in row]
+        for row, expect in zip(observed, expected)
+    ]
     # return sum of squares
     return np.sum(pearson_residuals)
 

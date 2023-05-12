@@ -209,8 +209,7 @@ plt.show()
 ### Measuring Homogeneity or Impurity
 
 def entropyFunction(x):
-    if x == 0: return 0
-    return -x * math.log(x, 2) - (1 - x) * math.log(1 - x, 2)
+    return 0 if x == 0 else -x * math.log(x, 2) - (1 - x) * math.log(1 - x, 2)
 
 def giniFunction(x):
     return x * (1 - x)

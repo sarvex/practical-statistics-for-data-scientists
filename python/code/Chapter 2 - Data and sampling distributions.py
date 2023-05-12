@@ -80,7 +80,7 @@ plt.show()
 ## The Bootstrap
 
 results = []
-for nrepeat in range(1000):
+for _ in range(1000):
     sample = resample(loans_income)
     results.append(sample.median())
 results = pd.Series(results)
@@ -92,12 +92,12 @@ print(f'std. error: {results.std()}')
 ## Confidence Intervals
 
 print(loans_income.mean())
-np.random.seed(seed=3)  
+np.random.seed(seed=3)
 # create a sample of 20 loan income data
 sample20 = resample(loans_income, n_samples=20, replace=False)
 print(sample20.mean())
 results = []
-for nrepeat in range(500):
+for _ in range(500):
     sample = resample(sample20)
     results.append(sample.mean())
 results = pd.Series(results)
@@ -128,7 +128,7 @@ np.random.seed(seed=3)
 sample20 = resample(loans_income, n_samples=20, replace=False)
 
 results = []
-for nrepeat in range(500):
+for _ in range(500):
     sample = resample(sample20)
     results.append(sample.mean())
 results = pd.Series(results)
